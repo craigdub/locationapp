@@ -1,0 +1,72 @@
+#map {
+	max-width: none;
+	max-height: none;
+	height: 450px;
+}
+#map label { width: auto; display:inline; }
+#map img { max-width: none; }
+
+.icon-plus:hover {
+	cursor: pointer;
+}
+
+.pull-right {
+	text-align: right;
+}
+
+#location-list li.editing {
+	border-bottom: none;
+	margin-top: -1px;
+	padding: 0;
+}
+#add-location {
+	margin-bottom: 10px
+}
+#location-list li.editing:last-child {
+	margin-bottom: -1px;
+}
+
+#location-list li.editing .edit {
+	display: block;
+}
+
+#location-list li.editing .view {
+	display: none;
+}
+
+#location-list li .view label {
+	word-break: break-word;
+}
+#location-list li .edit {
+	display: none;
+}
+hr {
+	margin: 10px 0;
+}
+.goto {
+	padding-left: 0px;
+}
+.save {
+	margin-right: 10px;
+}
+.name, .address {
+	width: 185px !important;
+}
+.plus,.minus {
+	height: 24px;
+	width: 24px;
+}
+.edit-toggle {
+	border-top: 1px solid #eee;
+}
+.lbltoggle,.toggle {
+	font-size: 10px;
+	float: left;
+}
+.lblname {
+	font-size: 12px;	
+}
+.pad-border {
+	border-right: 1px solid #eee;
+}
+   .style1 {background-color:#ffffff;font-weight:bold;border:2px #006699 solid;}

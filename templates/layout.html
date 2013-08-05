@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+		<link rel="stylesheet"" type=text/css href="{{ url_for('static', filename='css/layout.css') }}">
+		<script src="{{ url_for('static', filename='js/jquery-1.9.1.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootbox.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/underscore-min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/backbone-min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div class="row">
+				<div class="span12">
+					<h1>Uber</h1><p class="lead">Thank you for taking the time to review my app</p>
+					<p class="app-welcome">
+						Click New Location to create and manage your favorite pickup locations. <span class="app-name"></span><br/>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<ul id="tabs" class="nav nav-tabs">
+						<li><a href="#manage-location" data-toggle="tab">Manage Locations</a></li>
+					</ul>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="span3"> 
+					<button type="button" id="add-location" class="add btn btn-medium">
+						New Location<i class="icon-plus"></i>
+					</button>
+					<ul id="location-list" class="unstyled">
+					</ul>
+				</div>
+				<div class="span9">
+					<div id="map"></div>
+				</div>
+			</div>
+			<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="modalLabel"></h3>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>Some caption or something can go here awesome </p> 
+				</div>
+			</div>
+		</div>
+		<script type="text/template" id="location-template">
+			<div class="location-view">
+				<div class="edit-toggle edit-open row">
+					<div class="span2">
+						<label class="lblname"><%- name %></label>
+					</div>
+					<div class="span1 pull-right">
+						<label class="lbltoggle">edit</label>
+						<img class="toggle plus" src="static/img/plus.png" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="span3">
+						<button type="button" class="pull-left goto edit btn btn-link">
+						Go To 
+						</button>
+						<button type="button" class="pull-left delete edit btn btn-link">
+						Delete
+						</button>
+						<button type="button" class="pull-right save edit btn btn-link">
+						Save 
+						</button>
+						<% if (name == 'New Location') { %>
+						<% name = '' %>
+						<% } %>
+						<input type="text" id="name" class="name edit input-medium" placeholder="Name" value="<%- name %>">
+						<input type="text" id="address" class="address edit input-medium" placeholder="Address" value="<%- address %>">
+					</div>
+				</div>
+			</div>
+		</script>
+		<script>
+			var APIBASE = 'api/v1.0'
+			var map;
+			var divModMsg = document.createElement('div');
+
+			function initialize() {
+				google.maps.visualRefresh = true;
+				var center = new google.maps.LatLng({{ lat }},{{ lng }});
+				var mapOptions = {
+				 	center:center,
+				  	zoom:10,
+				  	mapTypeId:google.maps.MapTypeId.ROADMAP
+				 };
+				map = new google.maps.Map(document.getElementById("map"),mapOptions);
+				geocoder = new google.maps.Geocoder();
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+	</body>
+</html>
